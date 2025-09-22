@@ -36,12 +36,12 @@ El proyecto implementa un sistema de **Usuarios, Pedidos y Productos** con **aut
 2. **Crear el archivo `.env` con las variables necesarias:**
    ```bash
     \`\`\`env
-    PORT=3000.env.example
-    DB_HOST=db
-    DB_PORT=3309
+    PORT=3000
+    DB_HOST=localhost       
+    DB_PORT=3309     
     DB_USER=root
-    DB_PASSWORD=clave_segura
-    DB_NAME=UTNExamen
+    DB_PASSWORD=userpass
+    DB_NAME=UTNExamen      
     JWT_SECRET=clave_secreta
     \`\`\`
 
@@ -55,6 +55,13 @@ El proyecto implementa un sistema de **Usuarios, Pedidos y Productos** con **aut
    - API: `http://localhost:3000`  
    - MySQL (host): `localhost:3309` (usuario `root`, password `userpass`)
 
+---
+### 🔑 SuperAdmin por defecto
+
+- Al iniciar la base de datos por primera vez, **se crea automáticamente un usuario SuperAdmin**.  
+- **Email:** `superadmin@utn.com`  
+- **Contraseña:** `super1234`  
+- Podés iniciar sesión con estos datos directamente usando Postman o cualquier cliente HTTP.  
 ---
 
 ## 📐 Modelo de Datos (DER)
@@ -133,6 +140,25 @@ El siguiente diagrama muestra el **modelo entidad–relación** diseñado para e
 - **admin**: **CRUD** de productos.  
 - **usuario**: **generar pedidos** (solo ver/gestionar sus pedidos).
 
+---
+## 📡 Endpoints principales
+
+### Usuarios
+- `POST /registro` → Registrar un nuevo usuario
+- `POST /login` → Login y obtención de JWT
+- `GET /usuarios` → Listar todos los usuarios (solo superAdmin)
+- `DELETE /usuarios/:id` → Eliminar usuario (solo superAdmin)
+
+### Productos
+- `GET /productos` → Listar productos
+- `POST /productos` → Crear producto (admin/superAdmin)
+- `PUT /productos/:id` → Modificar producto (admin/superAdmin)
+- `DELETE /productos/:id` → Eliminar producto (admin/superAdmin)
+
+### Pedidos
+- `GET /pedidos` → Listar pedidos del usuario
+- `POST /pedidos` → Crear pedido
+- `GET /usuarios/pedidos` → Listar usuarios con sus pedidos (superAdmin)
 ---
 
 

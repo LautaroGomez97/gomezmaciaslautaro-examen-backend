@@ -1,13 +1,13 @@
-function tieneRol(...rolesPermitidos){
-    return (req, res, next) => {
-        const usuario = req.usuario;
+    function tieneRol(...rolesPermitidos){
+        return (req, res, next) => {
+            const usuario = req.usuario;
 
-        if(!usuario)return res.status(401).json({mensaje: 'No autorizado'});
-        if(!rolesPermitidos.includes(usuario.rol)){
-            return res.status(403).json({mensaje: ' Acceso denegado: No tienes permisos'});
+            if(!usuario)return res.status(401).json({mensaje: 'No autorizado'});
+            if(!rolesPermitidos.includes(usuario.rol)){
+                return res.status(403).json({ mensaje: `Acceso denegado` });
+            }
+            next();
         }
-        next();
     }
-}
 
-module.exports = { tieneRol };
+    module.exports = { tieneRol };
