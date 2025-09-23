@@ -70,7 +70,7 @@ async function listarUsuariosConPedidos() {
   const query = `
     SELECT usuario.id, usuario.nombre, usuario.email, COUNT(pedido.id) AS total_pedidos
     FROM usuarios AS usuario
-    LEFT JOIN pedidos AS pedido ON usuario.id = pedido.usuarioId
+    LEFT JOIN pedidos AS pedido ON usuario.id = pedido.idUsuario
     GROUP BY usuario.id
     ORDER BY total_pedidos DESC;
   `;

@@ -33,17 +33,17 @@ El proyecto implementa un sistema de **Usuarios, Pedidos y Productos** con **aut
    cd gomezmaciaslautaro-backend-examen
    ```
 
-2. **Crear el archivo `.env` con las variables necesarias:**
-   ```bash
-    \`\`\`env
+2. **🔑 Crear variables de entorno (.env)**  
+    ### Archivo .env
+
+    ```env
     PORT=3000
-    DB_HOST=localhost       
-    DB_PORT=3309     
+    DB_HOST=localhost
+    DB_PORT=3309
     DB_USER=root
-    DB_PASSWORD=userpass
-    DB_NAME=UTNExamen      
+    DB_PASSWORD=tu_clave
+    DB_NAME=UTNExamen
     JWT_SECRET=clave_secreta
-    \`\`\`
 
 3. **Levantar docker**
    ```bash
@@ -134,20 +134,25 @@ El siguiente diagrama muestra el **modelo entidad–relación** diseñado para e
 
 ---
 
-## 🔑 Roles y permisos (resumen)
+## 🔑 Roles y permisos
 
-- **superAdmin**: **crear / eliminar usuarios**, gestionar productos.  
-- **admin**: **CRUD** de productos.  
-- **usuario**: **generar pedidos** (solo ver/gestionar sus pedidos).
+| Rol        | Permisos principales                          |
+|------------|-----------------------------------------------|
+| superAdmin | Crear/eliminar usuarios, gestionar productos |
+| admin      | CRUD de productos                             |
+| usuario    | Generar pedidos propios                       |
 
 ---
 ## 📡 Endpoints principales
 
 ### Usuarios
-- `POST /registro` → Registrar un nuevo usuario
-- `POST /login` → Login y obtención de JWT
-- `GET /usuarios` → Listar todos los usuarios (solo superAdmin)
+- `POST /usuarios/registro` → Registrar un nuevo usuario
+- `POST /usuarios/login` → Login y obtención de JWT
+- `GET /usuarios/perfil` → obtener perfil del usuario logueado
+- `GET //usuarios/listarUsuarios` → Listar todos los usuarios (solo superAdmin)
+- `GET /usuarios/listarUsuariosPedidos ` → listarUsuariosConPedidos (solo superAdmin)
 - `DELETE /usuarios/:id` → Eliminar usuario (solo superAdmin)
+
 
 ### Productos
 - `GET /productos` → Listar productos
@@ -158,10 +163,12 @@ El siguiente diagrama muestra el **modelo entidad–relación** diseñado para e
 ### Pedidos
 - `GET /pedidos` → Listar pedidos del usuario
 - `POST /pedidos` → Crear pedido
-- `GET /usuarios/pedidos` → Listar usuarios con sus pedidos (superAdmin)
+- `GET /pedidos/usuarios` → Listar usuarios con sus pedidos (solo superAdmin)
+- `GET /pedidos/detalles` → Listar pedidos con detalles de productos (solo superAdmin)
 ---
 
 
-
-**Lautaro Gomez Macias** — Entrega Parcial Backend (UTN)
-
+---
+✍️ **Lautaro Gomez Macias**  
+📚 Examen Parcial Backend – UTN  
+🛡️ Proyecto validado con JWT, roles y contenedores Docker

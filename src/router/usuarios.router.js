@@ -11,8 +11,8 @@ router.post('/registro', registrarUsuario);
 router.post('/login', iniciarSesion);
 
 
-router.get('/', verificarToken, tieneRol('superAdmin'), listarUsuariosConPedidos);
-router.get('/', verificarToken, tieneRol('superAdmin'), listarUsuarios);
+router.get('/listarUsuariosPedidos', verificarToken, tieneRol('superAdmin'), listarUsuariosConPedidos);
+router.get('/listarUsuarios', verificarToken, tieneRol('superAdmin'), listarUsuarios);
 router.delete('/:id', verificarToken, tieneRol('superAdmin'), eliminarUsuario);
 
 router.get('/perfil', verificarToken, (req, res) => {

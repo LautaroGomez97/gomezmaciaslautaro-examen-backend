@@ -4,6 +4,7 @@ require('./config/db');
 
 const usuariosRutas = require('./router/usuarios.router');
 const productosRutas = require('./router/productos.router');
+const pedidosRutas = require('./router/pedidos.router');
 
 const { inicializarDB } = require('./config/init');
 
@@ -13,6 +14,7 @@ app.use(express.json());
 
 app.use('/usuarios', usuariosRutas);
 app.use('/productos', productosRutas);
+app.use('/pedidos', pedidosRutas);
 
 
 inicializarDB()
